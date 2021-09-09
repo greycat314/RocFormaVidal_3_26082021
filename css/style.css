@@ -1,1 +1,501 @@
-@import"https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap";@font-face{font-family:"Shrikhand";src:url("../fonts/Shrikhand/Shrikhand-Regular.eot");src:url("../fonts/Shrikhand/Shrikhand-Regular.eot?#iefix") format("embedded-opentype"),url("../fonts/Shrikhand/Shrikhand-Regular.woff2") format("woff2"),url("../fonts/Shrikhand/Shrikhand-Regular.woff") format("woff"),url("../fonts/Shrikhand/Shrikhand-Regular.ttf") format("truetype");font-weight:normal;font-style:italic;font-display:swap}*,*:before,*:after{box-sizing:inherit;margin:0;padding:0}html{box-sizing:border-box;font-size:62.5%}body{max-width:1440px;font-weight:normal;font-style:normal;font-size:1.6rem;margin:0 auto;font-family:Roboto,arial,"sans-serif";width:100%;background-repeat:no-repeat}.box_main{width:100%;margin:0 auto}header{position:relative;display:flex;justify-content:center;width:100%;height:62px;background-color:#fff;font-family:Shrikhand,"sans-serif"}header h2{font-size:2.9rem;padding-top:15px}.article_aside{display:flex;flex-flow:row nowrap;justify-content:space-between}article{width:75%;height:2002px;background-color:rgba(255,68,0,.3)}aside{width:25%;height:2002px;background-color:rgba(255,4,242,.3)}footer{width:100%;height:200px;color:#fff;background-color:#353535;padding:25px}footer svg{margin-bottom:15px}footer p{padding-bottom:7px}footer p .fas{font-size:1.5rem;width:22px}footer p .fa-hands-helping{font-size:1.1rem}footer a{position:relative;color:#fff}footer a:hover::after{opacity:1;-webkit-animation-name:email;animation-name:email;-webkit-animation-duration:1000ms;animation-duration:1000ms;-webkit-animation-delay:300ms;animation-delay:300ms;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-direction:alternate;animation-direction:alternate}footer a::after{content:"@";position:absolute;top:0;right:0;bottom:0;left:75px;opacity:0}::-moz-selection{color:#fff;background-color:#ff4500}::selection{color:#fff;background-color:#ff4500}a{color:#000;text-decoration:none}@-webkit-keyframes pulsation{from{transform:scale(2)}to{transform:scale(0.8)}}@keyframes pulsation{from{transform:scale(2)}to{transform:scale(0.8)}}@-webkit-keyframes email{from{transform:rotateZ(0deg)}to{transform:rotateZ(360deg)}}@keyframes email{from{transform:rotateZ(0deg)}to{transform:rotateZ(360deg)}}/*# sourceMappingURL=style.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap");
+/*==================== font-face ====================*/
+@font-face {
+  font-family: "Shrikhand";
+  src: url("../fonts/Shrikhand/Shrikhand-Regular.eot");
+  src: url("../fonts/Shrikhand/Shrikhand-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Shrikhand/Shrikhand-Regular.woff2") format("woff2"), url("../fonts/Shrikhand/Shrikhand-Regular.woff") format("woff"), url("../fonts/Shrikhand/Shrikhand-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+/*==================== variables ====================*/
+/*-------------------- var mixins : anim_pulsation -------------------- */
+/*-------------------- var mixins : action_button -------------------- */
+/*-------------------- var mixins : box_shadow_button - box_shadow_button_hover -------------------- */
+/*-------------------- var : .restaurants -------------------- */
+/*-------------------- var : .functionning -------------------- */
+/*==================== placeholder ====================*/
+/*==================== mixins ====================*/
+/*==================== keyframes ====================*/
+@-webkit-keyframes email {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+@keyframes email {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+/*==================== general class ====================*/
+/*-------------------- .gradient -------------------- */
+.gradient {
+  display: inline-block;
+  position: relative;
+}
+
+.gradient::before {
+  position: absolute;
+  content: "";
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  left: 0%;
+  background: linear-gradient(to top, #ff79da, #9356dc);
+  mix-blend-mode: screen;
+}
+
+/*-------------------- Cube 3D -------------------- */
+.cube {
+  width: 30px;
+  height: 30px;
+  transform-style: preserve-3d;
+  transition: transform 200ms ease-in-out 300ms;
+}
+.cube:hover {
+  transform: translateY(50%) rotateX(-90deg);
+}
+.cube div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 10px;
+}
+.cube_face1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cube_face1:hover {
+  font-size: 0rem;
+}
+.cube_face2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  transform-origin: top;
+  transform: translateY(-100%) rotateX(90deg);
+  text-transform: uppercase;
+}
+.cube_face2 a {
+  color: #000;
+}
+
+/*  ==================== html - body - box_main - header ====================*/
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  max-width: 1440px;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.6rem;
+  margin: 0 auto;
+  font-family: Roboto, arial, "sans-serif";
+  width: 100%;
+  background-repeat: no-repeat;
+}
+
+.box_main {
+  width: 100%;
+  margin: 0 auto;
+}
+
+header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 62px;
+  background-color: #fff;
+  font-family: Shrikhand, "sans-serif";
+  box-shadow: 0 0 2px 1px #cfcfcf;
+}
+header h2 {
+  font-size: 2.9rem;
+  padding-top: 15px;
+}
+header a {
+  position: absolute;
+  top: 21px;
+  left: 0;
+  line-height: 30px;
+  margin-left: 25px;
+  font-size: 1.8rem;
+  border-radius: 50%;
+}
+header a:hover {
+  transform: scale(2);
+  transition: transform 300ms linear;
+  -webkit-animation-name: pulsation;
+          animation-name: pulsation;
+  -webkit-animation-duration: 800ms;
+          animation-duration: 800ms;
+  -webkit-animation-delay: 300ms;
+          animation-delay: 300ms;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+@-webkit-keyframes pulsation {
+  from {
+    transform: scale(2);
+  }
+  to {
+    transform: scale(0.8);
+  }
+}
+@keyframes pulsation {
+  from {
+    transform: scale(2);
+  }
+  to {
+    transform: scale(0.8);
+  }
+}
+
+/*====================  Section - Article - Aside ====================*/
+.article_aside {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+/*-------------------- <article> -------------------- */
+article {
+  width: 75%;
+  height: 2002px;
+}
+article .location {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50px;
+  background-color: #eaeaea;
+  font-weight: 500;
+}
+article .location i {
+  margin-left: 105px;
+  margin-right: 15px;
+}
+article .title {
+  display: flex;
+  width: 100%;
+  padding: 39px 65px 0 60px;
+  background-color: #f6f6f6;
+}
+article .title h2 {
+  width: 240px;
+  font-weight: 500;
+  text-align: center;
+}
+article .info {
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  padding: 11px 0 0 11px;
+  font-size: 1.8rem;
+  font-weight: 300;
+  background-color: #f6f6f6;
+}
+article .search_restaurants {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 129px;
+  background-color: #f6f6f6;
+}
+article .search_restaurants a {
+  margin-top: 24px;
+  margin-left: 82px;
+  width: 218px;
+  height: 50px;
+  line-height: 50px;
+  box-shadow: 1px 4px 5px #c6c6c6;
+  transition: box-shadow 300ms 300ms linear;
+  position: relative;
+  background: linear-gradient(to right bottom, #ff79da, #9356dc);
+  text-align: center;
+  border-radius: 50px;
+  color: #fff;
+  z-index: 10;
+}
+article .search_restaurants a:hover::after {
+  opacity: 1;
+}
+article .search_restaurants a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  background: linear-gradient(to left top, #ff93e1, #a16be0);
+  transition: opacity 300ms 300ms linear;
+  border-radius: 50px;
+  color: #fff;
+  z-index: -10;
+}
+article .search_restaurants a:hover {
+  box-shadow: 1px 4px 5px #999999;
+  transition: box-shadow 300ms 300ms linear;
+}
+article .functioning {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 52px;
+}
+article .functioning .tasting_color {
+  background-color: #f5edff;
+}
+article .functioning .tasting_color i {
+  color: #9356dc;
+  font-size: 1.6rem;
+}
+article .functioning h2 {
+  width: 100%;
+  height: 30px;
+  font-weight: 500;
+  margin: 50px 0 29px 20px;
+}
+article .functioning div {
+  width: 100%;
+}
+article .functioning div p {
+  background-color: #f6f6f6;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  position: relative;
+  width: 325px;
+  height: 70px;
+  border-radius: 20px;
+  margin: 0 0 28px 30px;
+  font-weight: 500;
+  box-shadow: 1px 4px 5px #c6c6c6;
+  transition: box-shadow 300ms 300ms linear;
+}
+article .functioning div p:hover {
+  box-shadow: 1px 4px 5px #999999;
+  transition: box-shadow 300ms 300ms linear;
+}
+article .functioning div p:hover span {
+  transform: scale(2);
+  transition: transform 300ms linear;
+  -webkit-animation-name: pulsation;
+          animation-name: pulsation;
+  -webkit-animation-duration: 800ms;
+          animation-duration: 800ms;
+  -webkit-animation-delay: 300ms;
+          animation-delay: 300ms;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+@keyframes pulsation {
+  from {
+    transform: scale(2);
+  }
+  to {
+    transform: scale(0.8);
+  }
+}
+article .functioning div p span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #9356dc;
+  width: 24px;
+  height: 24px;
+  margin-top: 4px;
+  margin-left: -10px;
+  font-size: 1.4rem;
+  color: #fff;
+}
+article .functioning div p i {
+  margin-left: 22px;
+  width: 40px;
+  font-size: 2rem;
+  color: #7e7e7e;
+}
+article .restaurants {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #f6f6f65b;
+}
+article .restaurants h2 {
+  width: 100%;
+  height: 30px;
+  font-weight: 500;
+  margin: 40px 0 20px 20px;
+}
+article .restaurants_box {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 335px;
+  height: 250px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 1px 4px 5px #c6c6c6;
+  transition: box-shadow 300ms 300ms linear;
+}
+article .restaurants_box_img {
+  width: 335px;
+  height: 175px;
+}
+article .restaurants_box_img img {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+article .restaurants_box_new {
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  top: 14px;
+  right: 0;
+  bottom: 0;
+  left: 244px;
+  line-height: 29px;
+}
+article .restaurants_box_new p {
+  color: #008766;
+  background-color: #99e2d0;
+  text-align: center;
+  border-radius: 2px;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+article .restaurants_box_info {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  width: 85%;
+  height: 75px;
+  border-bottom-left-radius: 16px;
+  padding: 14px 13px 14px 13px;
+  background-color: #fff;
+}
+article .restaurants_box_info_name {
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+article .restaurants_box_info_place {
+  width: 100%;
+  font-size: 1.7rem;
+}
+article .restaurants_box_like {
+  position: relative;
+  width: 15%;
+  font-size: 2.4rem;
+  border-bottom-right-radius: 16px;
+}
+article .restaurants_box_like .img {
+  cursor: pointer;
+  margin-top: 15px;
+}
+article .restaurants_box_like .img :nth-child(1):hover + img {
+  transform: scale(100%);
+}
+article .restaurants_box_like .img :nth-child(2) {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: scale(0%);
+  transition: transform 300ms 300ms linear;
+}
+@media all and (max-width: 375px) {
+  article {
+    width: 100%;
+  }
+}
+
+/*-------------------- <aside> -------------------- */
+aside {
+  width: 25%;
+  height: 2002px;
+  background-color: rgba(255, 4, 242, 0.3);
+}
+@media all and (max-width: 375px) {
+  aside {
+    display: none;
+  }
+}
+
+/*==================== footer ====================*/
+footer {
+  margin-top: 50px;
+  width: 100%;
+  height: 200px;
+  color: #fff;
+  background-color: #353535;
+  padding: 25px;
+}
+footer svg {
+  margin-bottom: 15px;
+}
+footer p {
+  padding-bottom: 7px;
+}
+footer p .fas {
+  font-size: 1.5rem;
+  width: 22px;
+}
+footer p .fa-hands-helping {
+  font-size: 1.1rem;
+}
+footer a {
+  display: block;
+  color: #fff;
+}
+footer a span:hover {
+  border-bottom: 2px solid #fff;
+  filter: drop-shadow(0 5px 5px #fff);
+}
+
+/*====================  Various tags ====================*/
+::-moz-selection {
+  color: #fff;
+  background-color: #ff4500;
+}
+::selection {
+  color: #fff;
+  background-color: #ff4500;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+/*==================== breakpoints ====================*/
+/*==================== functions - extensions (%) ====================*//*# sourceMappingURL=style.css.map */

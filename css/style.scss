@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
 
 /*==================== font-face ====================*/
 
@@ -14,12 +15,190 @@
     font-display: swap;
 }
 
+
 /*==================== variables ====================*/
+
+$primary_color: #9356dc;
+$secondary_color: #ff79da;
+$tertiary_color: #99e2d0;
 
 /*-------------------- var mixins : anim_pulsation -------------------- */
 
-$scale_from: 2;
-$scale_to: .8;
+$scale_from_default: 2;
+$scale_to_default: .8;
+$duration_transition_default : 300ms;
+$duration_animation_default: 800ms;
+
+/*-------------------- var mixins : action_button -------------------- */
+
+$action_button_name_default: "My button";
+$background1_default: linear-gradient(to right bottom, $secondary_color, $primary_color);
+$background2_default: linear-gradient(to left top, lighten($secondary_color, 5%) , lighten($primary_color, 5%));
+$border_radius_default: 50px;
+
+/*-------------------- var mixins : box_shadow_button - box_shadow_button_hover -------------------- */
+
+$box_shadow_button_color_default: #c6c6c6;
+$box_shadow_delay_default: 300ms;
+$box_shadow_duration_default: 300ms;
+
+$box_shadow_button_hover_color_default: #999999;
+$box_shadow_hover_delay_default: 300ms;
+$box_shadow_hover_duration_default: 300ms;
+
+/*-------------------- var : .restaurants -------------------- */
+
+$restaurants_box_new_color: #008766;
+$restaurants_box_new_background_color: #99e2d0;
+
+/*-------------------- var : .functionning -------------------- */
+
+$functionning_tasting_color : $primary_color;
+$functionning_tasting_background_color : #f5edff;
+
+/*==================== placeholder ====================*/
+
+
+
+/*==================== mixins ====================*/
+
+@mixin anim_pulsation(
+    $scale_from: $scale_from_default,
+    $scale_to: $scale_to_default,
+    $duration_transition: $duration_transition_default, 
+    $duration_animation: $duration_animation_default
+    ) {
+    @keyframes pulsation {
+        from {transform: scale($scale_from);}
+        to {transform: scale($scale_to);}
+    }
+    transform: scale($scale_from);
+    transition: transform $duration_transition linear;
+    animation-name: pulsation;
+    animation-duration: $duration_animation;
+    animation-delay: $duration_transition;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@mixin action_button(
+    $background1: $background1_default,
+    $background2: $background2_default,
+    $border_radius: $border_radius_default
+    ) {
+    position: relative;
+    background: $background1; 
+    text-align: center;
+    border-radius: $border_radius;
+    color: #fff;
+    z-index: 10;
+    &:hover {
+        &::after {
+            opacity: 1;
+        }
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        background: $background2;
+        transition: opacity 300ms 300ms linear;
+        border-radius: $border_radius;
+        color: #fff;
+        z-index: -10;
+    }
+}
+
+@mixin box_shadow_button(
+    $box_shadow_button_color: $box_shadow_button_color_default,
+    $box_shadow_delay: $box_shadow_delay_default,
+    $box_shadow_duration: $box_shadow_duration_default
+    ) {
+    box-shadow: 1px 4px 5px $box_shadow_button_color;
+    transition: box-shadow $box_shadow_delay $box_shadow_duration linear;
+}
+
+@mixin box_shadow_button_hover(
+    $box_shadow_button_hover_color: $box_shadow_button_hover_color_default,
+    $box_shadow_hover_delay: $box_shadow_hover_delay_default,
+    $box_shadow_hover_duration: $box_shadow_hover_duration_default
+    ) {
+    box-shadow: 1px 4px 5px $box_shadow_button_hover_color;
+    transition: box-shadow $box_shadow_hover_delay $box_shadow_hover_duration linear;
+}
+
+/*==================== keyframes ====================*/
+
+@keyframes email {
+    from {transform: rotateZ(0deg);}
+    to {transform: rotateZ(360deg);}
+}
+
+/*==================== general class ====================*/
+
+/*-------------------- .gradient -------------------- */
+
+.gradient {
+    display: inline-block;
+    position: relative;
+}
+
+.gradient::before {
+    position: absolute;
+    content: '';
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    background: linear-gradient(to top, $secondary_color, $primary_color);
+    mix-blend-mode: screen;
+}
+
+
+/*-------------------- Cube 3D -------------------- */
+
+$cube_width: 30px;
+$cube_height: 30px;
+$cube_border_radius: 10px;
+
+.cube {
+	width: $cube_width;
+	height: $cube_height;
+	transform-style: preserve-3d;
+	transition: transform 200ms ease-in-out 300ms;
+	&:hover{
+		transform: translateY(50%) rotateX(-90deg);
+	}
+	div{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		border-radius: $cube_border_radius;
+	}
+	&_face1{
+		display: flex; justify-content: center; align-items: center;
+		// border: 1px solid #74d2e7;
+		&:hover{
+			font-size: 0rem;
+		}
+	}
+	&_face2{
+		display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+		// background-color: #a51890;
+		transform-origin: top;
+		transform: translateY(-100%) rotateX(90deg);
+		// font-size: 1.2rem;
+		// font-weight: 700;
+		text-transform: uppercase;
+		a{
+			color: #000;
+		}
+	}
+}
 
 
 /*  ==================== html - body - box_main - header ====================*/
@@ -44,6 +223,7 @@ body {
     margin: 0 auto;
     font-family: Roboto, arial, "sans-serif";width: 100%;
     background-repeat: no-repeat;
+    // background-image: url("../img/accueil.png");
 }
 
 .box_main {
@@ -59,11 +239,29 @@ header {
     height: 62px;
     background-color:#fff;
     font-family: Shrikhand,"sans-serif";
+    // border-bottom: 2px solid #cfcfcf;
+    box-shadow: 0 0 2px 1px #cfcfcf;
+
     h2 {
         font-size: 2.9rem;
         padding-top: 15px;
     }
+
+    a {
+        position: absolute;
+        top: 21px;
+        left: 0;
+        line-height: 30px;
+        margin-left: 25px;
+        font-size: 1.8rem;
+        border-radius: 50%;
+
+        &:hover {
+            @include anim_pulsation();
+        }
+    }
 }
+
 
 /*====================  Section - Article - Aside ====================*/
 
@@ -78,8 +276,248 @@ header {
 article {
     width: 75%;
     height: 2002px;
-    background-color:rgba(255, 68, 0, 0.3);
+    .location { 
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+        height: 50px;
+        background-color: #eaeaea;
+        font-weight: 500;
 
+        i {
+            margin-left: 105px;
+            margin-right: 15px;
+        }
+    }
+
+    .title {
+        display: flex;
+        width: 100%;
+        padding: 39px 65px 0 60px;
+        background-color: #f6f6f6;
+        // margin-top: 39px;
+        // padding: 0 60px;
+
+        h2 {
+            width: 240px;
+            font-weight: 500;
+            text-align: center;
+        }
+    }
+
+    .info {
+        width: 100%;
+        height: 60px;
+        text-align: center;
+        padding: 11px 0 0 11px;
+        font-size: 1.8rem;
+        font-weight: 300;
+        background-color: #f6f6f6;
+    }
+
+    .search_restaurants {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        height: 129px;
+        background-color: #f6f6f6;
+
+        a {
+            margin-top: 24px;
+            margin-left: 82px;
+            width: 218px;
+            height: 50px;
+            line-height: 50px;
+            @include box_shadow_button;
+            @include action_button();
+            &:hover {
+                @include box_shadow_button_hover;
+            }
+        }
+    }
+
+    .functioning {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 52px;
+
+        .tasting_color {
+            background-color: $functionning_tasting_background_color;
+
+            i {
+                color: $primary_color;
+                font-size: 1.6rem;
+            }
+        }
+        
+        h2 {
+            width: 100%;
+            height: 30px;
+            font-weight: 500;
+            margin: 50px 0 29px 20px;
+        }
+
+        div {
+            width: 100%;
+
+            p {
+                background-color: #f6f6f6;
+                display: flex;
+                flex-flow: row wrap;
+                align-items: center;
+                position: relative;
+                width: 325px;
+                height: 70px;
+                border-radius: 20px;
+                margin: 0 0 28px 30px;
+                font-weight: 500;
+                @include box_shadow_button;
+
+                &:hover {
+                    @include box_shadow_button_hover;
+                    span {
+                        @include anim_pulsation();
+                    }
+                }
+
+                span {
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    background-color: $primary_color;
+                    width: 24px;
+                    height: 24px;
+                    margin-top: 4px;
+                    margin-left: -10px;
+                    font-size: 1.4rem;
+                    color: #fff;
+                }
+
+                i {
+                    margin-left: 22px;
+                    width: 40px;
+                    font-size:  2rem;
+                    color: #7e7e7e;
+                }
+            }
+        }
+        
+    }
+
+    .restaurants {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        background-color: #f6f6f65b;
+
+        h2 {
+            width: 100%;
+            height: 30px;
+            font-weight: 500;
+            margin: 40px 0 20px 20px;
+        }
+
+        &_box {
+            position: relative;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            width: 335px;
+            height: 250px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            @include box_shadow_button;
+
+            &_img {
+                width: 335px;
+                height: 175px;
+                
+                img {
+                    border-top-left-radius: 16px;
+                    border-top-right-radius: 16px;
+                }
+            }
+
+            &_new {
+                position: absolute;
+                width: 80px;
+                height: 30px;
+                top: 14px;
+                right: 0;
+                bottom: 0;
+                left: 244px;
+                line-height: 29px;
+
+                p {
+                    color: $restaurants_box_new_color;
+                    background-color: $restaurants_box_new_background_color;
+                    text-align: center;
+                    border-radius: 2px;
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                }
+            }
+
+            &_info {
+                position: relative;
+                display: flex;
+                flex-flow: row wrap;
+                width: 85%;
+                height: 75px;
+                border-bottom-left-radius: 16px;
+                padding: 14px 13px 14px 13px;
+                background-color: #fff;
+
+                &_name {
+                    width: 100%;
+                    font-size: 1.8rem;
+                    font-weight: 500;
+                }
+                &_place {
+                    width: 100%;
+                    font-size: 1.7rem;
+                }
+            }
+
+            &_like {
+                position: relative; 
+                width: 15%;
+                font-size: 2.4rem;
+                border-bottom-right-radius: 16px;
+
+                .img {
+                    cursor: pointer ;
+                    margin-top: 15px;
+                    :nth-child(1) {
+                        &:hover {
+                                & + img {
+                                transform: scale(100%);
+                            }
+                        }
+                    }
+                    :nth-child(2) {
+                        position: absolute;
+                        top: 15px;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        transform: scale(0%);
+                        transition: transf+orm 300ms 300ms linear;
+                    }
+                }
+            }
+        }   
+    }
+
+    @media all and (max-width: 375px) {
+        width: 100%;
+    }
 }
 
 /*-------------------- <aside> -------------------- */
@@ -88,11 +526,16 @@ aside {
     width: 25%;
     height: 2002px;
     background-color:rgba(255, 4, 242, 0.3);
+
+    @media all and (max-width: 375px) {
+        display:none;;
+    }   
 }
+
 
 /*==================== footer ====================*/
 
-footer {
+footer {margin-top: 50px;
     width: 100%;
     height: 200px;
     color: #fff;
@@ -115,30 +558,18 @@ footer {
     }
 
     a {
-        position: relative;
+        display: block;
         color: #fff;
-        &:hover {
-            &::after {
-                opacity: 1;
-                animation-name: email;
-                animation-duration: 1000ms;
-                animation-delay: 300ms;
-                animation-iteration-count: infinite;
-                animation-direction: alternate;
-            }
-        }
-        &::after {
-            content: "@";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 75px;
-            opacity: 0;
-        }
-    }
-}
 
+        span {
+            &:hover {
+                border-bottom: 2px solid #fff;
+                filter: drop-shadow(0 5px 5px #fff);
+            }
+        }        
+    }
+
+}
 /*====================  Various tags ====================*/
 
 ::selection {
@@ -151,31 +582,10 @@ a {
     text-decoration: none;
 }
 
+
 /*==================== breakpoints ====================*/
 
 
+
 /*==================== functions - extensions (%) ====================*/
-
-
-
-
-/*==================== mixins ====================*/
-
-@mixin anim_pulsation($scale_from, $scale_to) {
-    @keyframes pulsation {
-        from {transform: scale($scale_from);}
-        to {transform: scale($scale_to);}
-    }
-}
-
-
-
-/*==================== keyframes ====================*/
-
-@include anim_pulsation($scale_from, $scale_to);
-
-@keyframes email {
-    from {transform: rotateZ(0deg);}
-    to {transform: rotateZ(360deg);}
-}
 
