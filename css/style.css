@@ -9,22 +9,12 @@
   font-display: swap;
 }
 /*==================== variables ====================*/
-/*-------------------- var mixins : anim_pulsation -------------------- */
 /*-------------------- var mixins : action_button -------------------- */
-/*-------------------- var mixins : box_shadow_button - box_shadow_button_hover -------------------- */
 /*-------------------- var : .restaurants -------------------- */
 /*-------------------- var : .functionning -------------------- */
 /*==================== placeholder ====================*/
 /*==================== mixins ====================*/
 /*==================== keyframes ====================*/
-@-webkit-keyframes email {
-  from {
-    transform: rotateZ(0deg);
-  }
-  to {
-    transform: rotateZ(360deg);
-  }
-}
 @keyframes email {
   from {
     transform: rotateZ(0deg);
@@ -61,31 +51,20 @@
 .cube:hover {
   transform: translateY(50%) rotateX(-90deg);
 }
-.cube div {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border-radius: 10px;
-}
 .cube_face1 {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.cube_face1:hover {
-  font-size: 0rem;
+  border: 1px solid #74d2e7;
 }
 .cube_face2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  border: 1px solid #f14f04;
   transform-origin: top;
   transform: translateY(-100%) rotateX(90deg);
-  text-transform: uppercase;
-}
-.cube_face2 a {
-  color: #000;
 }
 
 /*  ==================== html - body - box_main - header ====================*/
@@ -113,6 +92,7 @@ body {
 
 .box_main {
   width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
@@ -139,34 +119,21 @@ header a {
   font-size: 1.8rem;
   border-radius: 50%;
 }
-header a:hover {
-  transform: scale(2);
+header a p:hover {
+  transform: scale(4);
   transition: transform 300ms linear;
-  -webkit-animation-name: pulsation;
-          animation-name: pulsation;
-  -webkit-animation-duration: 800ms;
-          animation-duration: 800ms;
-  -webkit-animation-delay: 300ms;
-          animation-delay: 300ms;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-direction: alternate;
-          animation-direction: alternate;
-}
-@-webkit-keyframes pulsation {
-  from {
-    transform: scale(2);
-  }
-  to {
-    transform: scale(0.8);
-  }
+  animation-name: pulsation;
+  animation-duration: 800ms;
+  animation-delay: 300ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 @keyframes pulsation {
   from {
-    transform: scale(2);
+    transform: scale(4);
   }
   to {
-    transform: scale(0.8);
+    transform: scale(0.5);
   }
 }
 
@@ -178,53 +145,57 @@ header a:hover {
 }
 
 /*-------------------- <article> -------------------- */
-article {
-  width: 75%;
-  height: 2002px;
-}
 article .location {
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   height: 50px;
-  background-color: #eaeaea;
+  background-color: #eaeaea8e;
   font-weight: 500;
 }
 article .location i {
-  margin-left: 105px;
   margin-right: 15px;
+}
+@media all and (max-width: 375px) {
+  article .location p {
+    width: 140px;
+  }
 }
 article .title {
   display: flex;
-  width: 100%;
-  padding: 39px 65px 0 60px;
-  background-color: #f6f6f6;
+  justify-content: center;
+  height: 80px;
+  padding-top: 39px;
+  background-color: #f6f6f67a;
 }
 article .title h2 {
-  width: 240px;
   font-weight: 500;
   text-align: center;
 }
+@media all and (max-width: 375px) {
+  article .title h2 {
+    width: 240px;
+    margin-left: -18px;
+  }
+}
 article .info {
-  width: 100%;
   height: 60px;
   text-align: center;
-  padding: 11px 0 0 11px;
+  padding: 28px 0 0 8px;
   font-size: 1.8rem;
   font-weight: 300;
-  background-color: #f6f6f6;
+  background-color: #f6f6f67e;
 }
 article .search_restaurants {
   display: flex;
-  justify-content: flex-start;
-  width: 100%;
+  justify-content: center;
   height: 129px;
-  background-color: #f6f6f6;
+  padding-top: 40px;
+  background-color: #f6f6f675;
 }
 article .search_restaurants a {
-  margin-top: 24px;
-  margin-left: 82px;
+  margin-left: 8px;
   width: 218px;
   height: 50px;
   line-height: 50px;
@@ -248,7 +219,7 @@ article .search_restaurants a::after {
   bottom: 0;
   left: 0;
   opacity: 0;
-  background: linear-gradient(to left top, #ff93e1, #a16be0);
+  background: linear-gradient(to left top, #ff88de, #9b63df);
   transition: opacity 300ms 300ms linear;
   border-radius: 50px;
   color: #fff;
@@ -262,8 +233,7 @@ article .functioning {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  width: 100%;
-  margin-bottom: 52px;
+  padding-top: 15px;
 }
 article .functioning .tasting_color {
   background-color: #f5edff;
@@ -274,12 +244,16 @@ article .functioning .tasting_color i {
 }
 article .functioning h2 {
   width: 100%;
-  height: 30px;
+  text-align: center;
   font-weight: 500;
-  margin: 50px 0 29px 20px;
+  margin: 50px 0 32px 20px;
 }
 article .functioning div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
   width: 100%;
+  padding-bottom: 37px;
 }
 article .functioning div p {
   background-color: #f6f6f6;
@@ -290,7 +264,7 @@ article .functioning div p {
   width: 325px;
   height: 70px;
   border-radius: 20px;
-  margin: 0 0 28px 30px;
+  margin: 0 0 28px 13px;
   font-weight: 500;
   box-shadow: 1px 4px 5px #c6c6c6;
   transition: box-shadow 300ms 300ms linear;
@@ -302,23 +276,18 @@ article .functioning div p:hover {
 article .functioning div p:hover span {
   transform: scale(2);
   transition: transform 300ms linear;
-  -webkit-animation-name: pulsation;
-          animation-name: pulsation;
-  -webkit-animation-duration: 800ms;
-          animation-duration: 800ms;
-  -webkit-animation-delay: 300ms;
-          animation-delay: 300ms;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-direction: alternate;
-          animation-direction: alternate;
+  animation-name: pulsation;
+  animation-duration: 800ms;
+  animation-delay: 300ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 @keyframes pulsation {
   from {
     transform: scale(2);
   }
   to {
-    transform: scale(0.8);
+    transform: scale(1);
   }
 }
 article .functioning div p span {
@@ -340,19 +309,24 @@ article .functioning div p i {
   font-size: 2rem;
   color: #7e7e7e;
 }
+@media all and (max-width: 375px) {
+  article .functioning h2 {
+    text-align: left;
+  }
+}
 article .restaurants {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  background-color: #f6f6f65b;
+  justify-content: space-evenly;
+  padding-top: 55px;
+  padding-bottom: 12px;
+  background-color: #f6f6f6;
 }
 article .restaurants h2 {
   width: 100%;
   height: 30px;
   font-weight: 500;
-  margin: 40px 0 20px 20px;
+  margin: 0 0 22px 20px;
 }
 article .restaurants_box {
   position: relative;
@@ -362,13 +336,19 @@ article .restaurants_box {
   width: 335px;
   height: 250px;
   border-radius: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   box-shadow: 1px 4px 5px #c6c6c6;
   transition: box-shadow 300ms 300ms linear;
+}
+article .restaurants_box:hover .restaurants_box_img {
+  clip-path: polygon(0 100%, 100% 100%, 50% 0, 0 100%);
+  transition: 300ms 600ms ease-in-out;
 }
 article .restaurants_box_img {
   width: 335px;
   height: 175px;
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  transition: 300ms 1200ms ease-in-out;
 }
 article .restaurants_box_img img {
   border-top-left-radius: 16px;
@@ -399,7 +379,7 @@ article .restaurants_box_info {
   width: 85%;
   height: 75px;
   border-bottom-left-radius: 16px;
-  padding: 14px 13px 14px 13px;
+  padding: 15px 13px 13px 13px;
   background-color: #fff;
 }
 article .restaurants_box_info_name {
@@ -416,66 +396,102 @@ article .restaurants_box_like {
   width: 15%;
   font-size: 2.4rem;
   border-bottom-right-radius: 16px;
+  background-color: #fff;
 }
 article .restaurants_box_like .img {
-  cursor: pointer;
-  margin-top: 15px;
+  margin-top: 16px;
 }
-article .restaurants_box_like .img :nth-child(1):hover + img {
-  transform: scale(100%);
+article .restaurants_box_like .img :nth-child(1):hover + :nth-child(2) {
+  transform: scale(1.2);
 }
 article .restaurants_box_like .img :nth-child(2) {
   position: absolute;
-  top: 15px;
+  top: 16px;
   right: 0;
   bottom: 0;
   left: 0;
-  transform: scale(0%);
+  transform: scale(0);
   transition: transform 300ms 300ms linear;
 }
-@media all and (max-width: 375px) {
-  article {
-    width: 100%;
+article .restaurants_box_like .img :nth-child(2):hover {
+  transform: scale(1.2);
+}
+@media all and (min-width: 1081px) {
+  article .restaurants {
+    padding-top: 10px;
+    padding-bottom: 52px;
+  }
+}
+@media all and (min-width: 376px) {
+  article .restaurants_box {
+    margin: 0 15px 16px 15px;
   }
 }
 
 /*-------------------- <aside> -------------------- */
 aside {
-  width: 25%;
-  height: 2002px;
-  background-color: rgba(255, 4, 242, 0.3);
+  min-width: 330px;
+  flex: 0;
+  text-align: justify;
+  border: 1px solid #9356dc;
+  box-shadow: -2px -2px 5px #9356dc;
+  padding: 10px;
+  line-height: 24px;
+  background-color: #f6f6f6;
 }
-@media all and (max-width: 375px) {
+aside p::first-letter {
+  font-size: 2.5rem;
+  color: #9356dc;
+}
+@media all and (max-width: 1080px) {
   aside {
     display: none;
   }
 }
+aside h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+aside h3 {
+  margin: 15px 0 2px 0;
+}
 
 /*==================== footer ====================*/
 footer {
-  margin-top: 50px;
+  position: relative;
+  margin-top: 33px;
   width: 100%;
   height: 200px;
   color: #fff;
   background-color: #353535;
-  padding: 25px;
+  padding: 20px 25px;
 }
 footer svg {
+  margin-top: 6px;
   margin-bottom: 15px;
+  text-align: left;
 }
 footer p {
-  padding-bottom: 7px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding-bottom: 5px;
 }
-footer p .fas {
-  font-size: 1.5rem;
+footer p i {
   width: 22px;
 }
-footer p .fa-hands-helping {
+footer p i.fas {
+  font-size: 1.3rem;
+}
+footer p i.fa-hands-helping {
   font-size: 1.1rem;
 }
 footer a {
   display: block;
   color: #fff;
+}
+footer a span {
+  border-bottom: 2px solid transparent;
 }
 footer a span:hover {
   border-bottom: 2px solid #fff;
@@ -483,10 +499,6 @@ footer a span:hover {
 }
 
 /*====================  Various tags ====================*/
-::-moz-selection {
-  color: #fff;
-  background-color: #ff4500;
-}
 ::selection {
   color: #fff;
   background-color: #ff4500;
@@ -495,6 +507,7 @@ footer a span:hover {
 a {
   color: black;
   text-decoration: none;
+  cursor: url(../img/hand_cursor.png) 4 12, auto;
 }
 
 /*==================== breakpoints ====================*/
