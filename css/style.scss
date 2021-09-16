@@ -18,9 +18,14 @@
 
 /*==================== variables ====================*/
 
+/*-------------------- colors -------------------- */
+
 $primary_color: #9356dc;
 $secondary_color: #ff79da;
 $tertiary_color: #99e2d0;
+
+$background_color: #f6f6f6;
+$background_color_location: #eaeaea;
 
 /*-------------------- var mixins : action_button -------------------- */
 
@@ -210,6 +215,7 @@ body {
     font-family: Roboto, arial, "sans-serif";width: 100%;
     background-repeat: no-repeat;
     // background-image: url("../img/accueil.png");
+    background-image : url("../img/menu_la_palette.png");
 }
 
 .box_main {
@@ -259,14 +265,13 @@ header {
 /*-------------------- <article> -------------------- */    
 
 article { 
-
     .location {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
         height: 50px;
-        background-color: #eaeaea8e;
+        background-color: $background_color_location;
         font-weight: 500;
 
         i {
@@ -285,7 +290,7 @@ article {
         justify-content: center;
         height: 80px;
         padding-top: 39px;
-        background-color: #f6f6f67a;
+        background-color: $background_color;
 
         h2 {
             font-weight: 500;
@@ -306,7 +311,7 @@ article {
         padding: 28px 0 0 8px;
         font-size: 1.8rem;
         font-weight: 300;
-        background-color: #f6f6f67e;
+        background-color: $background_color;
     }
 
     .search_restaurants {
@@ -314,11 +319,11 @@ article {
         justify-content: center;
         height: 129px;
         padding-top: 40px;
-        background-color: #f6f6f675;
+        background-color: $background_color;
 
         a {
-            margin-left: 8px;
-            width: 218px;
+            margin-left: 5px;
+            padding: 0 20px;
             height: 50px;
             line-height: 50px;
             @include box_shadow_button();
@@ -359,7 +364,7 @@ article {
             padding-bottom: 37px;
 
             p {
-                background-color: #f6f6f6;
+                background-color: $background_color;
                 display: flex;
                 flex-flow: row wrap;
                 align-items: center;
@@ -414,7 +419,7 @@ article {
         justify-content: space-evenly;
         padding-top: 55px;
         padding-bottom: 12px;
-        background-color: #f6f6f6;
+        background-color: $background_color;
 
         h2 {
             width: 100%;
@@ -444,7 +449,7 @@ article {
                 height: 175px;
                 clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
                 transition: 300ms 1200ms ease-in-out;
-                
+
                 img {
                     border-top-left-radius: 16px;
                     border-top-right-radius: 16px;
@@ -506,6 +511,7 @@ article {
                         &:hover {
                             & + :nth-child(2) {
                                 transform: scale(1.2);
+
                             }
                         }
                     }
@@ -553,7 +559,7 @@ aside {
     box-shadow: -2px -2px 5px $primary_color;
     padding: 10px;
     line-height: 24px;
-    background-color: #f6f6f6;
+    background-color: $background_color;
 
     p::first-letter {
         font-size: 2.5rem;
@@ -634,7 +640,7 @@ footer {
 a {
     color: black;
     text-decoration: none;
-    cursor: url(../img/hand_cursor.png) 4 12, auto;
+    cursor: url(../img/hand_cursor.png) 12 4, auto;
 }
 
 
@@ -643,4 +649,206 @@ a {
 
 
 /*==================== functions - extensions (%) ====================*/
+
+
+
+/*==================== Restaurant Menu ====================*/
+
+article { 
+    .menu {
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        // background-color: $background_color;
+        // background-color: rgba(21, 235, 57, 0.342);
+
+        &_img{
+            width: 375px;
+            height: 250px;
+        }
+
+        &_contents {
+            // background-color: $background_color;
+            // background-color: rgba(204, 7, 56, 0.5);
+            position: relative;
+            width: 100%;
+            margin-top: -30px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+
+            &_restaurant_name {
+                width: 100%;
+                margin-bottom: 11px;
+                padding-top: 32px;
+                padding-left: 20px;
+
+                h3 {
+                    font-size: 2.7rem;
+                    font-family: Shrikhand, "sans-serif";
+                    text-align: left;
+                }
+
+                img {
+                    position: absolute;
+                    top: 35px;
+                    right: 0;
+                    bottom: 0;
+                    left:312px;
+                }
+            }
+
+            &_box {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                margin-bottom: 16px;
+                padding: 12px 5px 0 5px;
+
+                &_name {
+                    position: relative;
+                    background-color: rgba(218, 165, 32, 0.479);
+                    width: 100%;
+                    height: 35px;
+                    font-size: 1.6rem;
+                    padding-top: 4px;
+                    padding-left: 8px;
+
+                    h4 {
+                        text-transform: uppercase;
+                        padding-top: 3px;
+                        padding-left: 7px;
+                        font-weight: 300;
+                    }
+
+                    div {
+                        position: absolute;
+                        width: 40px;
+                        height: 2px;
+                        background-color: $tertiary_color;
+                        top: 32px;
+                        right: 0;
+                        bottom: 0;
+                        left: 14px;
+                    }
+                }
+
+                &_recipe {
+                    background-color: rgba(32, 196, 218, 0.596);
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: center;
+                    // background-color: #fff;
+                    width: 350px;
+                    height: 70px;
+                    border-radius: 16px;
+                    margin-top: 12px;
+                    padding-left: 12px;
+                    overflow: hidden;
+
+                    &_ok {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        justify-content: center;
+                        align-items: center;
+                        order: 3;
+                        background-color: $tertiary_color;
+                        background-color: red;
+                        width: 60px;
+                        height: 100%;
+                        border-top-right-radius: 16px;
+                        border-bottom-right-radius: 16px;
+                        font-size: 2rem;
+                        transform: translateX(60px);
+                        transition: transform 300ms 300ms linear;
+
+                        i {
+                            transform: rotate(-360deg);
+                            transition: transform 600ms 0ms linear;
+                        }
+                    }
+
+                    &_info {
+                        width: 220px;
+                        height: 50px;
+                        background-color: #2427f348;
+                        font-weight: 300;
+
+                        p:nth-of-type(1) {
+                            width: 100%;
+                            height: 26px;
+                            background-color: rgba(238, 196, 12, 0.342);
+                            font-size: 1.8rem;
+                            font-weight: 500;
+                            padding-top: 3px;
+                            padding-right: 12px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+
+                        }
+
+                        p:nth-of-type(2) {
+                            background-color: rgba(165, 42, 42, 0.308);
+                            width: 100%;
+                            height: 24px;
+                            padding-top: 5px;
+                            font-size: 1.5rem;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+
+                    &_price {
+                        // width: 40px;
+                        width: 60px;
+                        height: 50px; 
+                        background-color: rgba(0, 128, 0, 0.479);
+                        padding-top: 30px;
+                        padding-left: 15px;
+                        padding-right: 21px;
+                        font-weight: 500;
+                        flex: 0 1;
+                    }
+
+                    &:hover > p[class="menu_contents_box_recipe_ok"] {
+                        transform: translateX(0);
+                        transition:transform 300ms 300ms linear;
+
+                        i {
+                            transform: rotate(0deg);
+                            transition: transform 600ms 300ms linear;
+                        }
+                    }
+                }
+            }
+            div[class="menu_contents_box"]:nth-of-type(4){
+                margin-top: 28px;
+            }
+        }
+    }
+
+    .order {
+        display: flex;
+        justify-content: center;
+        margin-top: 45px;
+        margin-bottom: 24px;
+        border: #ff440080;
+
+        a {
+            padding: 0 48px;
+            height: 50px;
+            line-height: 50px;
+            @include box_shadow_button();
+            @include action_button();
+            &:hover {
+                @include box_shadow_button_hover();
+            }
+        }
+    }
+}
+
+
+
 

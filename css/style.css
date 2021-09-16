@@ -9,6 +9,7 @@
   font-display: swap;
 }
 /*==================== variables ====================*/
+/*-------------------- colors -------------------- */
 /*-------------------- var mixins : action_button -------------------- */
 /*-------------------- var : .restaurants -------------------- */
 /*-------------------- var : .functionning -------------------- */
@@ -88,6 +89,7 @@ body {
   font-family: Roboto, arial, "sans-serif";
   width: 100%;
   background-repeat: no-repeat;
+  background-image: url("../img/menu_la_palette.png");
 }
 
 .box_main {
@@ -151,7 +153,7 @@ article .location {
   justify-content: center;
   align-items: center;
   height: 50px;
-  background-color: #eaeaea8e;
+  background-color: #eaeaea;
   font-weight: 500;
 }
 article .location i {
@@ -167,7 +169,7 @@ article .title {
   justify-content: center;
   height: 80px;
   padding-top: 39px;
-  background-color: #f6f6f67a;
+  background-color: #f6f6f6;
 }
 article .title h2 {
   font-weight: 500;
@@ -185,18 +187,18 @@ article .info {
   padding: 28px 0 0 8px;
   font-size: 1.8rem;
   font-weight: 300;
-  background-color: #f6f6f67e;
+  background-color: #f6f6f6;
 }
 article .search_restaurants {
   display: flex;
   justify-content: center;
   height: 129px;
   padding-top: 40px;
-  background-color: #f6f6f675;
+  background-color: #f6f6f6;
 }
 article .search_restaurants a {
-  margin-left: 8px;
-  width: 218px;
+  margin-left: 5px;
+  padding: 0 20px;
   height: 50px;
   line-height: 50px;
   box-shadow: 1px 4px 5px #c6c6c6;
@@ -507,8 +509,198 @@ footer a span:hover {
 a {
   color: black;
   text-decoration: none;
-  cursor: url(../img/hand_cursor.png) 4 12, auto;
+  cursor: url(../img/hand_cursor.png) 12 4, auto;
 }
 
 /*==================== breakpoints ====================*/
-/*==================== functions - extensions (%) ====================*//*# sourceMappingURL=style.css.map */
+/*==================== functions - extensions (%) ====================*/
+/*==================== Restaurant Menu ====================*/
+article .menu {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+article .menu_img {
+  width: 375px;
+  height: 250px;
+}
+article .menu_contents {
+  position: relative;
+  width: 100%;
+  margin-top: -30px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+article .menu_contents_restaurant_name {
+  width: 100%;
+  margin-bottom: 11px;
+  padding-top: 32px;
+  padding-left: 20px;
+}
+article .menu_contents_restaurant_name h3 {
+  font-size: 2.7rem;
+  font-family: Shrikhand, "sans-serif";
+  text-align: left;
+}
+article .menu_contents_restaurant_name img {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  bottom: 0;
+  left: 312px;
+}
+article .menu_contents_box {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-bottom: 16px;
+  padding: 12px 5px 0 5px;
+}
+article .menu_contents_box_name {
+  position: relative;
+  background-color: rgba(218, 165, 32, 0.479);
+  width: 100%;
+  height: 35px;
+  font-size: 1.6rem;
+  padding-top: 4px;
+  padding-left: 8px;
+}
+article .menu_contents_box_name h4 {
+  text-transform: uppercase;
+  padding-top: 3px;
+  padding-left: 7px;
+  font-weight: 300;
+}
+article .menu_contents_box_name div {
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background-color: #99e2d0;
+  top: 32px;
+  right: 0;
+  bottom: 0;
+  left: 14px;
+}
+article .menu_contents_box_recipe {
+  background-color: rgba(32, 196, 218, 0.596);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 350px;
+  height: 70px;
+  border-radius: 16px;
+  margin-top: 12px;
+  padding-left: 12px;
+  overflow: hidden;
+}
+article .menu_contents_box_recipe_ok {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  order: 3;
+  background-color: #99e2d0;
+  background-color: red;
+  width: 60px;
+  height: 100%;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  font-size: 2rem;
+  transform: translateX(60px);
+  transition: transform 300ms 300ms linear;
+}
+article .menu_contents_box_recipe_ok i {
+  transform: rotate(-360deg);
+  transition: transform 600ms 0ms linear;
+}
+article .menu_contents_box_recipe_info {
+  width: 220px;
+  height: 50px;
+  background-color: #2427f348;
+  font-weight: 300;
+}
+article .menu_contents_box_recipe_info p:nth-of-type(1) {
+  width: 100%;
+  height: 26px;
+  background-color: rgba(238, 196, 12, 0.342);
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding-top: 3px;
+  padding-right: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+article .menu_contents_box_recipe_info p:nth-of-type(2) {
+  background-color: rgba(165, 42, 42, 0.308);
+  width: 100%;
+  height: 24px;
+  padding-top: 5px;
+  font-size: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+article .menu_contents_box_recipe_price {
+  width: 60px;
+  height: 50px;
+  background-color: rgba(0, 128, 0, 0.479);
+  padding-top: 30px;
+  padding-left: 15px;
+  padding-right: 21px;
+  font-weight: 500;
+  flex: 0 1;
+}
+article .menu_contents_box_recipe:hover > p[class=menu_contents_box_recipe_ok] {
+  transform: translateX(0);
+  transition: transform 300ms 300ms linear;
+}
+article .menu_contents_box_recipe:hover > p[class=menu_contents_box_recipe_ok] i {
+  transform: rotate(0deg);
+  transition: transform 600ms 300ms linear;
+}
+article .menu_contents div[class=menu_contents_box]:nth-of-type(4) {
+  margin-top: 28px;
+}
+article .order {
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+  margin-bottom: 24px;
+  border: #ff440080;
+}
+article .order a {
+  padding: 0 48px;
+  height: 50px;
+  line-height: 50px;
+  box-shadow: 1px 4px 5px #c6c6c6;
+  transition: box-shadow 300ms 300ms linear;
+  position: relative;
+  background: linear-gradient(to right bottom, #ff79da, #9356dc);
+  text-align: center;
+  border-radius: 50px;
+  color: #fff;
+  z-index: 10;
+}
+article .order a:hover::after {
+  opacity: 1;
+}
+article .order a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  background: linear-gradient(to left top, #ff88de, #9b63df);
+  transition: opacity 300ms 300ms linear;
+  border-radius: 50px;
+  color: #fff;
+  z-index: -10;
+}
+article .order a:hover {
+  box-shadow: 1px 4px 5px #999999;
+  transition: box-shadow 300ms 300ms linear;
+}/*# sourceMappingURL=style.css.map */
