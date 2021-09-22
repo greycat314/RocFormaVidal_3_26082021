@@ -23,7 +23,7 @@
 
             <article>
                 <div class="menu">
-                    <img srcset="
+                    <!-- <img srcset="
                         img/restaurant_menu/restaurant_la_note_enchantee_1440w.jpg 1440w,
                         img/restaurant_menu/restaurant_la_note_enchantee_375w.jpg 375w
                         " 
@@ -32,7 +32,16 @@
                             (min-width: 810px) 1440px,
                             375px"
                         src="img/restaurant_menu/restaurant_la_note_enchantee_375w.jpg" alt="Restaurant : La note enchantée" 
-                    />
+                    /> -->
+
+                    <picture>
+                        <source 
+                            srcset="img/restaurant_menu/restaurant_la_note_enchantee_1440w.jpg"
+                            media="(min-width: 810px)"
+                        >
+
+                        <img src="img/restaurant_menu/restaurant_la_note_enchantee_375w.jpg" alt="Plat principal" />
+                    </picture>
 
                     <div class="menu_contents">
                         <div class="menu_contents_restaurant_name">

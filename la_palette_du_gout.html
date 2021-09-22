@@ -23,17 +23,27 @@
 
             <article>
                 <div class="menu">
-                    <img srcset="
+                    <!-- <img srcset="
                         img/restaurant_menu/restaurant_la_palette_du_gout_1440w.jpg 1440w,
                         img/restaurant_menu/restaurant_la_palette_du_gout_375w.jpg 375w
-                        " 
+                        "
+
                         sizes="
                             (max-width: 809px) 375px,
                             (min-width: 810px) 1440px,
                             375px"
-                            
-                        src="img/restaurant_menu/restaurant_la_palette_du_gout_375w.jpg" alt="Restaurant : La palette du goût" 
-                    />
+
+                        src="img/restaurant_menu/restaurant_la_palette_du_gout_375w.jpg" alt="Restaurant : La palette du goût"
+                    /> -->
+
+                    <picture>
+                        <source 
+                            srcset="img/restaurant_menu/restaurant_la_palette_du_gout_1440w.jpg"
+                            media="(min-width: 810px)"
+                        >
+
+                        <img src="img/restaurant_menu/restaurant_la_palette_du_gout_375w.jpg" alt="Plat principal" />
+                    </picture>
 
                     <div class="menu_contents">
                         <div class="menu_contents_restaurant_name">
