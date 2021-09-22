@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
 
 /*==================== font-face ====================*/
@@ -14,7 +14,6 @@
     font-style: italic;
     font-display: swap;
 }
-
 
 /*==================== variables ====================*/
 
@@ -48,28 +47,16 @@ $functionning_tasting_background_color : #f5edff;
 
 
 
-
 /*==================== mixins ====================*/        
 
-@mixin anim_pulsation(
-    $scale_from: 3 , 
-    $scale_to: .8,
-    $duration_transition: 300ms,
-    $duration_animation: 800ms
-    ) {
-        
-    @keyframes pulsation {
-        from {transform: scale($scale_from)}
-        to {transform: scale($scale_to)}
-    }
-
+@mixin scale($name, $scale_from: 2, $scale_to: 1){
     transform: scale($scale_from);
-    transition: transform $duration_transition linear;
-    animation-name: pulsation;
-    animation-duration: $duration_animation;
-    animation-delay: $duration_transition;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    transition: transform 300ms linear;
+
+    @keyframes #{$name}{
+        from {transform: scale($scale_from)}
+        to {transform: scale($scale_to)};
+    }
 }
 
 @mixin action_button(
@@ -122,76 +109,42 @@ $functionning_tasting_background_color : #f5edff;
     transition: box-shadow $box_shadow_hover_delay $box_shadow_hover_duration linear;
 }
 
+@mixin move_opacity(
+    $move_opacity_step: 15px 
+    ) {
+        
+    @keyframes move_opacity {
+        from {
+            opacity: 0;
+            transform: translateY($move_opacity_step);
+        }
+        
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    animation-name: move_opacity;
+    animation-duration: 1500ms;
+    animation-delay: 200ms;
+    animation-fill-mode: both;
+}
+
+
 /*==================== keyframes ====================*/
 
-@keyframes email {
-    from {transform: rotateZ(0deg);}
-    to {transform: rotateZ(360deg);}
+@keyframes move_opacity {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-
-/*==================== general class ====================*/
-
-/*-------------------- .gradient -------------------- */
-
-.gradient {
-    display: inline-block;
-    position: relative;
-}
-
-.gradient::before {
-    position: absolute;
-    content: '';
-    top: 0%;
-    right: 0%;
-    bottom: 0%;
-    left: 0%;
-    background: linear-gradient(to top, $secondary_color, $primary_color);
-    mix-blend-mode: screen;
-}
-
-
-/*-------------------- Cube 3D -------------------- */
-
-$cube_width: 30px;
-$cube_height: 30px;
-$cube_border_radius: 10px;
-
-.cube {
-	width: $cube_width;
-	height: $cube_height;
-	transform-style: preserve-3d;
-	transition: transform 200ms ease-in-out 300ms;
-	&:hover{
-		transform: translateY(50%) rotateX(-90deg);
-	}
-	// div{
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	position: absolute;
-	// 	border-radius: $cube_border_radius;
-	// }
-	&_face1{
-		display: flex; justify-content: center; align-items: center;
-		border: 1px solid #74d2e7;
-		// &:hover{
-		// 	font-size: 0rem;
-		// }
-	}
-	&_face2{
-		display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-		// background-color: #a51890;
-        border: 1px solid #f14f04;
-		transform-origin: top;
-		transform: translateY(-100%) rotateX(90deg);
-		// font-size: 1.2rem;
-		// font-weight: 700;
-		// text-transform: uppercase;
-		// a{
-		// 	color: #000;
-		// }
-	}
-}
-
 
 /*  ==================== html - body - box_main - header ====================*/
 
@@ -203,7 +156,8 @@ $cube_border_radius: 10px;
 
 html {
     box-sizing: border-box;
-    font-size: 62.5%;    
+    font-size: 62.5%;
+    background-color: #fff;  
 }
 
 body {
@@ -214,13 +168,13 @@ body {
     margin: 0 auto;
     font-family: Roboto, arial, "sans-serif";width: 100%;
     background-repeat: no-repeat;
-    // background-image: url("../img/accueil.png");
-    background-image : url("../img/menu_la_palette.png");
+    background-color: $background_color;
 }
 
 .box_main {
     width: 100%;
     max-width: 1440px;
+    min-width: 375px;
     margin: 0 auto;
 }
 
@@ -237,6 +191,11 @@ header {
     h2 {
         font-size: 2.9rem;
         padding-top: 15px;
+
+        @media all and (min-width: 810px) {
+            font-size: 3.5rem;
+            padding-top: 8px;
+        }  
     }
 
     a {
@@ -249,7 +208,8 @@ header {
         border-radius: 50%;
 
         p:hover {
-            @include anim_pulsation(4, .5);
+            @include scale(scale_one, 3);
+            animation: scale_one 1000ms 300ms linear infinite alternate; 
         }
     }
 }
@@ -293,7 +253,7 @@ article {
         background-color: $background_color;
 
         h2 {
-            font-weight: 500;
+            font-weight: 600;
             text-align: center;
         }
 
@@ -339,6 +299,7 @@ article {
         flex-flow: row wrap;
         justify-content: center;
         padding-top: 15px;
+        background-color: #fff;
 
         .tasting_color {
             background-color: $functionning_tasting_background_color;
@@ -351,8 +312,7 @@ article {
         
         h2 {
             width: 100%;
-            text-align: center;
-            font-weight: 500;
+            font-weight: 600;
             margin: 50px 0 32px 20px;
         }
 
@@ -379,7 +339,8 @@ article {
                 &:hover {
                     @include box_shadow_button_hover();
                     span {
-                        @include anim_pulsation(2, 1); 
+                        @include scale(scale_two, 2);
+                        animation: scale_two 1000ms 300ms linear infinite alternate; 
                     }
                 }
 
@@ -405,12 +366,6 @@ article {
                 }
             }
         }
-        
-        @media all and (max-width: 375px) {
-            h2 {
-                text-align: left; 
-            }
-        }  
     }
 
     .restaurants {
@@ -424,7 +379,7 @@ article {
         h2 {
             width: 100%;
             height: 30px;
-            font-weight: 500;
+            font-weight: 600;
             margin: 0 0 22px 20px;
         }
 
@@ -448,7 +403,7 @@ article {
                 width: 335px;
                 height: 175px;
                 clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
-                transition: 300ms 1200ms ease-in-out;
+                transition: 300ms 900ms ease-in-out;
 
                 img {
                     border-top-left-radius: 16px;
@@ -489,11 +444,12 @@ article {
                 &_name {
                     width: 100%;
                     font-size: 1.8rem;
-                    font-weight: 500;
+                    font-weight: 600;
                 }
                 &_place {
                     width: 100%;
                     font-size: 1.7rem;
+                    font-weight: 300;
                 }
             }
 
@@ -505,7 +461,6 @@ article {
                 background-color: #fff;
 
                 .img {
-                    // cursor: pointer ;
                     margin-top: 16px;
                     :nth-child(1) {
                         &:hover {
@@ -555,14 +510,15 @@ aside {
     flex: 0;
     text-align: justify;
     border: 1px solid $primary_color;
-    // border-radius: 20px;;
+    border-radius: 20px;
     box-shadow: -2px -2px 5px $primary_color;
     padding: 10px;
     line-height: 24px;
-    background-color: $background_color;
+    background-color: #fff;
+    margin: 0 10px;
 
     p::first-letter {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         color: $primary_color;
     }
 
@@ -643,34 +599,24 @@ a {
     cursor: url(../img/hand_cursor.png) 12 4, auto;
 }
 
-
-/*==================== breakpoints ====================*/
-
-
-
-/*==================== functions - extensions (%) ====================*/
-
-
-
 /*==================== Restaurant Menu ====================*/
 
 article { 
     .menu {
-        width: 100%;
+        // width: 100%;
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
-        // background-color: $background_color;
-        // background-color: rgba(21, 235, 57, 0.342);
+        background-color: $background_color;
 
         &_img{
+            // position: relative;
             width: 375px;
             height: 250px;
         }
 
         &_contents {
-            // background-color: $background_color;
-            // background-color: rgba(204, 7, 56, 0.5);
+            background-color: $background_color;
             position: relative;
             width: 100%;
             margin-top: -30px;
@@ -684,9 +630,10 @@ article {
                 padding-left: 20px;
 
                 h3 {
-                    font-size: 2.7rem;
+                    font-size: 2.8rem;
                     font-family: Shrikhand, "sans-serif";
                     text-align: left;
+                    font-weight: 500;
                 }
 
                 img {
@@ -707,7 +654,6 @@ article {
 
                 &_name {
                     position: relative;
-                    background-color: rgba(218, 165, 32, 0.479);
                     width: 100%;
                     height: 35px;
                     font-size: 1.6rem;
@@ -719,6 +665,8 @@ article {
                         padding-top: 3px;
                         padding-left: 7px;
                         font-weight: 300;
+
+                        
                     }
 
                     div {
@@ -734,97 +682,99 @@ article {
                 }
 
                 &_recipe {
-                    background-color: rgba(32, 196, 218, 0.596);
                     display: flex;
-                    flex-flow: row nowrap;
+                    flex-flow: row wrap;
                     align-items: center;
-                    // background-color: #fff;
                     width: 350px;
                     height: 70px;
                     border-radius: 16px;
                     margin-top: 12px;
                     padding-left: 12px;
                     overflow: hidden;
+                    background-color: #fff;
 
-                    &_ok {
-                        display: flex;
-                        flex-flow: row nowrap;
-                        justify-content: center;
-                        align-items: center;
-                        order: 3;
-                        background-color: $tertiary_color;
-                        background-color: red;
-                        width: 60px;
-                        height: 100%;
-                        border-top-right-radius: 16px;
-                        border-bottom-right-radius: 16px;
-                        font-size: 2rem;
-                        transform: translateX(60px);
-                        transition: transform 300ms 300ms linear;
+                    @include box_shadow_button();
+                        &:hover {
+                        @include box_shadow_button_hover();
+                    }
 
+                    &:hover .menu_contents_box_recipe_ok {
+                        margin-right: 0;
                         i {
-                            transform: rotate(-360deg);
-                            transition: transform 600ms 0ms linear;
+                            transform: rotate(0deg);
                         }
                     }
 
                     &_info {
-                        width: 220px;
+                        width: 150px;
                         height: 50px;
-                        background-color: #2427f348;
-                        font-weight: 300;
+                        flex: 1;
+                        padding-right: 1px;
 
-                        p:nth-of-type(1) {
-                            width: 100%;
-                            height: 26px;
-                            background-color: rgba(238, 196, 12, 0.342);
+                        p {
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                        
+                        :nth-child(1) {
+                            height: 28px;
                             font-size: 1.8rem;
                             font-weight: 500;
-                            padding-top: 3px;
-                            padding-right: 12px;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-
-                        }
-
-                        p:nth-of-type(2) {
-                            background-color: rgba(165, 42, 42, 0.308);
-                            width: 100%;
-                            height: 24px;
                             padding-top: 5px;
+                        }
+                        
+                        :nth-child(2) {
+                            height: 22px;
                             font-size: 1.5rem;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
+                            font-weight: 300;
+                            padding-top: 3px;
                         }
                     }
 
                     &_price {
-                        // width: 40px;
                         width: 60px;
-                        height: 50px; 
-                        background-color: rgba(0, 128, 0, 0.479);
-                        padding-top: 30px;
-                        padding-left: 15px;
-                        padding-right: 21px;
+                        height: 50px;
+                        font-size: 1.5rem;
                         font-weight: 500;
-                        flex: 0 1;
+                        padding-top: 31px;
+                        padding-left: 12px;
                     }
 
-                    &:hover > p[class="menu_contents_box_recipe_ok"] {
-                        transform: translateX(0);
-                        transition:transform 300ms 300ms linear;
+                    &_ok {
+                        background-color: $tertiary_color;
+                        display: flex;
+                        flex-flow: row nowrap;
+                        justify-content: center;
+                        align-items: center;
+                        width: 60px;
+                        height: 100%;
+                        margin-right: -60px;
+                        transition: all 300ms 300ms ease-in-out;
 
                         i {
-                            transform: rotate(0deg);
-                            transition: transform 600ms 300ms linear;
+                            transform: rotate(-270deg);
+                            transition: transform 300ms 450ms ease-in-out;
+                            font-size: 2rem;
                         }
+                    }
+
+                    @media all and (min-width: 710px) {
+                        margin: 12px 10px 0 10px;
+                    }
+
+                }
+
+                @for $i from 1 through 10 {
+                        a:nth-of-type(#{$i}) {
+                        opacity: 0;
+                        animation: move_opacity 1500ms calc(400ms * #{$i}) forwards;
                     }
                 }
             }
-            div[class="menu_contents_box"]:nth-of-type(4){
-                margin-top: 28px;
+
+            div.menu_contents_box:nth-of-type(4){
+                margin-top: 30px;
             }
         }
     }

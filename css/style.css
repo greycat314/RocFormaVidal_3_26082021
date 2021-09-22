@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
 /*==================== font-face ====================*/
 @font-face {
   font-family: "Shrikhand";
@@ -16,58 +16,26 @@
 /*==================== placeholder ====================*/
 /*==================== mixins ====================*/
 /*==================== keyframes ====================*/
-@keyframes email {
+@-webkit-keyframes move_opacity {
   from {
-    transform: rotateZ(0deg);
+    opacity: 0;
+    transform: translateY(15px);
   }
   to {
-    transform: rotateZ(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
-/*==================== general class ====================*/
-/*-------------------- .gradient -------------------- */
-.gradient {
-  display: inline-block;
-  position: relative;
+@keyframes move_opacity {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
-.gradient::before {
-  position: absolute;
-  content: "";
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
-  background: linear-gradient(to top, #ff79da, #9356dc);
-  mix-blend-mode: screen;
-}
-
-/*-------------------- Cube 3D -------------------- */
-.cube {
-  width: 30px;
-  height: 30px;
-  transform-style: preserve-3d;
-  transition: transform 200ms ease-in-out 300ms;
-}
-.cube:hover {
-  transform: translateY(50%) rotateX(-90deg);
-}
-.cube_face1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #74d2e7;
-}
-.cube_face2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #f14f04;
-  transform-origin: top;
-  transform: translateY(-100%) rotateX(90deg);
-}
-
 /*  ==================== html - body - box_main - header ====================*/
 *, *:before, *:after {
   box-sizing: inherit;
@@ -78,6 +46,7 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  background-color: #fff;
 }
 
 body {
@@ -89,12 +58,13 @@ body {
   font-family: Roboto, arial, "sans-serif";
   width: 100%;
   background-repeat: no-repeat;
-  background-image: url("../img/menu_la_palette.png");
+  background-color: #f6f6f6;
 }
 
 .box_main {
   width: 100%;
   max-width: 1440px;
+  min-width: 375px;
   margin: 0 auto;
 }
 
@@ -112,6 +82,12 @@ header h2 {
   font-size: 2.9rem;
   padding-top: 15px;
 }
+@media all and (min-width: 810px) {
+  header h2 {
+    font-size: 3.5rem;
+    padding-top: 8px;
+  }
+}
 header a {
   position: absolute;
   top: 21px;
@@ -122,20 +98,25 @@ header a {
   border-radius: 50%;
 }
 header a p:hover {
-  transform: scale(4);
+  transform: scale(3);
   transition: transform 300ms linear;
-  animation-name: pulsation;
-  animation-duration: 800ms;
-  animation-delay: 300ms;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  -webkit-animation: scale_one 1000ms 300ms linear infinite alternate;
+          animation: scale_one 1000ms 300ms linear infinite alternate;
 }
-@keyframes pulsation {
+@-webkit-keyframes scale_one {
   from {
-    transform: scale(4);
+    transform: scale(3);
   }
   to {
-    transform: scale(0.5);
+    transform: scale(1);
+  }
+}
+@keyframes scale_one {
+  from {
+    transform: scale(3);
+  }
+  to {
+    transform: scale(1);
   }
 }
 
@@ -172,7 +153,7 @@ article .title {
   background-color: #f6f6f6;
 }
 article .title h2 {
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
 }
 @media all and (max-width: 375px) {
@@ -236,6 +217,7 @@ article .functioning {
   flex-flow: row wrap;
   justify-content: center;
   padding-top: 15px;
+  background-color: #fff;
 }
 article .functioning .tasting_color {
   background-color: #f5edff;
@@ -246,8 +228,7 @@ article .functioning .tasting_color i {
 }
 article .functioning h2 {
   width: 100%;
-  text-align: center;
-  font-weight: 500;
+  font-weight: 600;
   margin: 50px 0 32px 20px;
 }
 article .functioning div {
@@ -278,13 +259,18 @@ article .functioning div p:hover {
 article .functioning div p:hover span {
   transform: scale(2);
   transition: transform 300ms linear;
-  animation-name: pulsation;
-  animation-duration: 800ms;
-  animation-delay: 300ms;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  -webkit-animation: scale_two 1000ms 300ms linear infinite alternate;
+          animation: scale_two 1000ms 300ms linear infinite alternate;
 }
-@keyframes pulsation {
+@-webkit-keyframes scale_two {
+  from {
+    transform: scale(2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes scale_two {
   from {
     transform: scale(2);
   }
@@ -311,11 +297,6 @@ article .functioning div p i {
   font-size: 2rem;
   color: #7e7e7e;
 }
-@media all and (max-width: 375px) {
-  article .functioning h2 {
-    text-align: left;
-  }
-}
 article .restaurants {
   display: flex;
   flex-flow: row wrap;
@@ -327,7 +308,7 @@ article .restaurants {
 article .restaurants h2 {
   width: 100%;
   height: 30px;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0 0 22px 20px;
 }
 article .restaurants_box {
@@ -343,14 +324,16 @@ article .restaurants_box {
   transition: box-shadow 300ms 300ms linear;
 }
 article .restaurants_box:hover .restaurants_box_img {
-  clip-path: polygon(0 100%, 100% 100%, 50% 0, 0 100%);
+  -webkit-clip-path: polygon(0 100%, 100% 100%, 50% 0, 0 100%);
+          clip-path: polygon(0 100%, 100% 100%, 50% 0, 0 100%);
   transition: 300ms 600ms ease-in-out;
 }
 article .restaurants_box_img {
   width: 335px;
   height: 175px;
-  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
-  transition: 300ms 1200ms ease-in-out;
+  -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+          clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  transition: 300ms 900ms ease-in-out;
 }
 article .restaurants_box_img img {
   border-top-left-radius: 16px;
@@ -387,11 +370,12 @@ article .restaurants_box_info {
 article .restaurants_box_info_name {
   width: 100%;
   font-size: 1.8rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 article .restaurants_box_info_place {
   width: 100%;
   font-size: 1.7rem;
+  font-weight: 300;
 }
 article .restaurants_box_like {
   position: relative;
@@ -436,13 +420,15 @@ aside {
   flex: 0;
   text-align: justify;
   border: 1px solid #9356dc;
+  border-radius: 20px;
   box-shadow: -2px -2px 5px #9356dc;
   padding: 10px;
   line-height: 24px;
-  background-color: #f6f6f6;
+  background-color: #fff;
+  margin: 0 10px;
 }
 aside p::first-letter {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: #9356dc;
 }
 @media all and (max-width: 1080px) {
@@ -501,6 +487,10 @@ footer a span:hover {
 }
 
 /*====================  Various tags ====================*/
+::-moz-selection {
+  color: #fff;
+  background-color: #ff4500;
+}
 ::selection {
   color: #fff;
   background-color: #ff4500;
@@ -512,20 +502,19 @@ a {
   cursor: url(../img/hand_cursor.png) 12 4, auto;
 }
 
-/*==================== breakpoints ====================*/
-/*==================== functions - extensions (%) ====================*/
 /*==================== Restaurant Menu ====================*/
 article .menu {
-  width: 100%;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  background-color: #f6f6f6;
 }
 article .menu_img {
   width: 375px;
   height: 250px;
 }
 article .menu_contents {
+  background-color: #f6f6f6;
   position: relative;
   width: 100%;
   margin-top: -30px;
@@ -539,9 +528,10 @@ article .menu_contents_restaurant_name {
   padding-left: 20px;
 }
 article .menu_contents_restaurant_name h3 {
-  font-size: 2.7rem;
+  font-size: 2.8rem;
   font-family: Shrikhand, "sans-serif";
   text-align: left;
+  font-weight: 500;
 }
 article .menu_contents_restaurant_name img {
   position: absolute;
@@ -559,7 +549,6 @@ article .menu_contents_box {
 }
 article .menu_contents_box_name {
   position: relative;
-  background-color: rgba(218, 165, 32, 0.479);
   width: 100%;
   height: 35px;
   font-size: 1.6rem;
@@ -583,9 +572,8 @@ article .menu_contents_box_name div {
   left: 14px;
 }
 article .menu_contents_box_recipe {
-  background-color: rgba(32, 196, 218, 0.596);
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   align-items: center;
   width: 350px;
   height: 70px;
@@ -593,75 +581,124 @@ article .menu_contents_box_recipe {
   margin-top: 12px;
   padding-left: 12px;
   overflow: hidden;
+  background-color: #fff;
+  box-shadow: 1px 4px 5px #c6c6c6;
+  transition: box-shadow 300ms 300ms linear;
 }
-article .menu_contents_box_recipe_ok {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  order: 3;
-  background-color: #99e2d0;
-  background-color: red;
-  width: 60px;
-  height: 100%;
-  border-top-right-radius: 16px;
-  border-bottom-right-radius: 16px;
-  font-size: 2rem;
-  transform: translateX(60px);
-  transition: transform 300ms 300ms linear;
+article .menu_contents_box_recipe:hover {
+  box-shadow: 1px 4px 5px #999999;
+  transition: box-shadow 300ms 300ms linear;
 }
-article .menu_contents_box_recipe_ok i {
-  transform: rotate(-360deg);
-  transition: transform 600ms 0ms linear;
+article .menu_contents_box_recipe:hover .menu_contents_box_recipe_ok {
+  margin-right: 0;
+}
+article .menu_contents_box_recipe:hover .menu_contents_box_recipe_ok i {
+  transform: rotate(0deg);
 }
 article .menu_contents_box_recipe_info {
-  width: 220px;
+  width: 150px;
   height: 50px;
-  background-color: #2427f348;
-  font-weight: 300;
+  flex: 1;
+  padding-right: 1px;
 }
-article .menu_contents_box_recipe_info p:nth-of-type(1) {
-  width: 100%;
-  height: 26px;
-  background-color: rgba(238, 196, 12, 0.342);
+article .menu_contents_box_recipe_info p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+article .menu_contents_box_recipe_info :nth-child(1) {
+  height: 28px;
   font-size: 1.8rem;
   font-weight: 500;
-  padding-top: 3px;
-  padding-right: 12px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-article .menu_contents_box_recipe_info p:nth-of-type(2) {
-  background-color: rgba(165, 42, 42, 0.308);
-  width: 100%;
-  height: 24px;
   padding-top: 5px;
+}
+article .menu_contents_box_recipe_info :nth-child(2) {
+  height: 22px;
   font-size: 1.5rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-weight: 300;
+  padding-top: 3px;
 }
 article .menu_contents_box_recipe_price {
   width: 60px;
   height: 50px;
-  background-color: rgba(0, 128, 0, 0.479);
-  padding-top: 30px;
-  padding-left: 15px;
-  padding-right: 21px;
+  font-size: 1.5rem;
   font-weight: 500;
-  flex: 0 1;
+  padding-top: 31px;
+  padding-left: 12px;
 }
-article .menu_contents_box_recipe:hover > p[class=menu_contents_box_recipe_ok] {
-  transform: translateX(0);
-  transition: transform 300ms 300ms linear;
+article .menu_contents_box_recipe_ok {
+  background-color: #99e2d0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 100%;
+  margin-right: -60px;
+  transition: all 300ms 300ms ease-in-out;
 }
-article .menu_contents_box_recipe:hover > p[class=menu_contents_box_recipe_ok] i {
-  transform: rotate(0deg);
-  transition: transform 600ms 300ms linear;
+article .menu_contents_box_recipe_ok i {
+  transform: rotate(-270deg);
+  transition: transform 300ms 450ms ease-in-out;
+  font-size: 2rem;
 }
-article .menu_contents div[class=menu_contents_box]:nth-of-type(4) {
-  margin-top: 28px;
+@media all and (min-width: 710px) {
+  article .menu_contents_box_recipe {
+    margin: 12px 10px 0 10px;
+  }
+}
+article .menu_contents_box a:nth-of-type(1) {
+  opacity: 0;
+  -webkit-animation: move_opacity 1500ms calc(400ms * 1) forwards;
+          animation: move_opacity 1500ms calc(400ms * 1) forwards;
+}
+article .menu_contents_box a:nth-of-type(2) {
+  opacity: 0;
+  -webkit-animation: move_opacity 1500ms calc(400ms * 2) forwards;
+          animation: move_opacity 1500ms calc(400ms * 2) forwards;
+}
+article .menu_contents_box a:nth-of-type(3) {
+  opacity: 0;
+  -webkit-animation: move_opacity 1500ms calc(400ms * 3) forwards;
+          animation: move_opacity 1500ms calc(400ms * 3) forwards;
+}
+article .menu_contents_box a:nth-of-type(4) {
+  opacity: 0;
+  -webkit-animation: move_opacity 1500ms calc(400ms * 4) forwards;
+          animation: move_opacity 1500ms calc(400ms * 4) forwards;
+}
+article .menu_contents_box a:nth-of-type(5) {
+  opacity: 0;
+  -webkit-animation: move_opacity 1500ms calc(400ms * 5) forwards;
+          animation: move_opacity 1500ms calc(400ms * 5) forwards;
+}
+article .menu_contents_box a:nth-of-type(6) {
+  opacity: 0;
+  -webkit-animation: move_opacity 1500ms calc(400ms * 6) forwards;
+          animation: move_opacity 1500ms calc(400ms * 6) forwards;
+}
+article .menu_contents_box a:nth-of-type(7) {
+  opacity: 0;
+  -webkit-animation: move_opacity 1500ms calc(400ms * 7) forwards;
+          animation: move_opacity 1500ms calc(400ms * 7) forwards;
+}
+article .menu_contents_box a:nth-of-type(8) {
+  opacity: 0;
+  -webkit-animation: move_opacity 1500ms calc(400ms * 8) forwards;
+          animation: move_opacity 1500ms calc(400ms * 8) forwards;
+}
+article .menu_contents_box a:nth-of-type(9) {
+  opacity: 0;
+  -webkit-animation: move_opacity 1500ms calc(400ms * 9) forwards;
+          animation: move_opacity 1500ms calc(400ms * 9) forwards;
+}
+article .menu_contents_box a:nth-of-type(10) {
+  opacity: 0;
+  -webkit-animation: move_opacity 1500ms calc(400ms * 10) forwards;
+          animation: move_opacity 1500ms calc(400ms * 10) forwards;
+}
+article .menu_contents div.menu_contents_box:nth-of-type(4) {
+  margin-top: 30px;
 }
 article .order {
   display: flex;

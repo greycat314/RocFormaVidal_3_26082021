@@ -4,9 +4,9 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Restaurant La palette du goût</title>
-        <meta name="description" content="Restaurant La palette du goût." />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+        <title>La palette du goût</title>
+        <meta name="description" content="Restaurant : La palette du goût." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <link rel="icon" type="img/png" href="img/favicon.png" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
@@ -23,14 +23,22 @@
 
             <article>
                 <div class="menu">
-                    <div class="menu_img">
-                        <img src="img/restaurant_menu/restaurant_la_palette_du_gout_375w.jpg" alt="Restaurant La palette du goût" width="375" height="250" />
-                    </div>
+                    <img srcset="
+                        img/restaurant_menu/restaurant_la_palette_du_gout_1440w.jpg 1440w,
+                        img/restaurant_menu/restaurant_la_palette_du_gout_375w.jpg 375w
+                        " 
+                        sizes="
+                            (max-width: 809px) 375px,
+                            (min-width: 810px) 1440px,
+                            375px"
+                            
+                        src="img/restaurant_menu/restaurant_la_palette_du_gout_375w.jpg" alt="Restaurant : La palette du goût" 
+                    />
 
                     <div class="menu_contents">
                         <div class="menu_contents_restaurant_name">
                             <h3>La palette du goût</h3>
-                            <img src="img/article/heart.png" alt="Logo restaurants_box_like" width="30" height="30" />
+                            <img src="img/article/heart_30w.png" alt="Heart" />
                         </div>
 
                         <div class="menu_contents_box">
@@ -41,47 +49,52 @@
 
                             <a href="">
                                 <div class="menu_contents_box_recipe">
+                                    <div class="menu_contents_box_recipe_info">
+                                        <p title="Fricassée d'escargot" >Fricassée d'escargot</p>
+                                        <p title="Au piment d'espelette">Au piment d'Espelette</p>
+                                    </div>
+
+                                    <div class="menu_contents_box_recipe_price">
+                                        <p>25€</p>
+                                    </div>
+
                                     <p class="menu_contents_box_recipe_ok">
                                         <i class="fas fa-check-circle fa-inverse"></i>
                                     </p>
-
-                                    <div class="menu_contents_box_recipe_info">
-                                        <p title="Fricassée d'escargot">Fricassée d'escargot</p>
-                                        <p title="Au piment d'espelette">Au piment d'espelette Au piment d'espelette</p>
-                                    </div>
-
-                                    <p class="menu_contents_box_recipe_price">25€</p>
                                 </div>
                             </a>
-                            
 
                             <a href="">
                                 <div class="menu_contents_box_recipe">
-                                    <p class="menu_contents_box_recipe_ok">
-                                        <i class="fas fa-check-circle fa-inverse"></i>
-                                    </p>
-
                                     <div class="menu_contents_box_recipe_info">
                                         <p title="Foie gras de canard mi-cuit">Foie gras de canard mi-cuit</p>
                                         <p title="Et ses copeaux de truffe noire">Et ses copeaux de truffe noire</p>
                                     </div>
-                                    <p class="menu_contents_box_recipe_price">35€</p>
-                                    
+
+                                    <div class="menu_contents_box_recipe_price">
+                                        <p>35€</p>
+                                    </div>
+
+                                    <p class="menu_contents_box_recipe_ok">
+                                        <i class="fas fa-check-circle fa-inverse"></i>
+                                    </p>
                                 </div>
                             </a>
 
                             <a href="">
                                 <div class="menu_contents_box_recipe">
+                                    <div class="menu_contents_box_recipe_info">
+                                        <p title="Oeuf au plat">Oeuf au plat</p>
+                                        <p title="Assaisonné à la truffe sur lit de caviar">Assaisonné à la truffe sur lit de caviar</p>
+                                    </div>
+
+                                    <div class="menu_contents_box_recipe_price">
+                                        <p>20€</p>
+                                    </div>
+
                                     <p class="menu_contents_box_recipe_ok">
                                         <i class="fas fa-check-circle fa-inverse"></i>
                                     </p>
-
-                                    <div class="menu_contents_box_recipe_info">
-                                        <p title="Oeuf au plat">Oeuf au plat Oeuf au plat Oeuf au plat</p>
-                                        <p title="Assaisonné à la truffe sur lit de caviar de normandie">Assaisonné à la truffe sur lit de caviar de normandie</p>
-                                    </div>
-
-                                    <p class="menu_contents_box_recipe_price">20€</p>
                                 </div>
                             </a>
                         </div>
@@ -94,46 +107,52 @@
 
                             <a href="">
                                 <div class="menu_contents_box_recipe">
-                                    <p class="menu_contents_box_recipe_ok">
-                                        <i class="fas fa-check-circle fa-inverse"></i>
-                                    </p>
-
                                     <div class="menu_contents_box_recipe_info">
                                         <p title="Filet de boeuf aux herbes">Filet de boeuf aux herbes</p>
                                         <p title="Accompagné de sa ribambelle de légumes">Accompagné de sa ribambelle de légumes</p>
                                     </div>
 
-                                    <p class="menu_contents_box_recipe_price">40€</p>
+                                    <div class="menu_contents_box_recipe_price">
+                                        <p>40€</p>
+                                    </div>
+
+                                    <p class="menu_contents_box_recipe_ok">
+                                        <i class="fas fa-check-circle fa-inverse"></i>
+                                    </p>
                                 </div>
                             </a>
 
                             <a href="">
                                 <div class="menu_contents_box_recipe">
-                                    <p class="menu_contents_box_recipe_ok">
-                                        <i class="fas fa-check-circle fa-inverse"></i>
-                                    </p>
-
                                     <div class="menu_contents_box_recipe_info">
                                         <p title="Parmentier de queue de boeuf">Parmentier de queue de boeuf</p>
                                         <p title="À la truffe noire sur sa purée de panais">À la truffe noire sur sa purée de panais</p>
                                     </div>
 
-                                    <p class="menu_contents_box_recipe_price">35€</p>
-                                </div> 
+                                    <div class="menu_contents_box_recipe_price">
+                                        <p>35€</p>
+                                    </div>
+
+                                    <p class="menu_contents_box_recipe_ok">
+                                        <i class="fas fa-check-circle fa-inverse"></i>
+                                    </p>
+                                </div>
                             </a>
 
                             <a href="">
                                 <div class="menu_contents_box_recipe">
+                                    <div class="menu_contents_box_recipe_info">
+                                        <p title="Filet de turbot">Filet de turbot</p>
+                                        <p title="Aux agrumes">Aux agrumes</p>
+                                    </div>
+
+                                    <div class="menu_contents_box_recipe_price">
+                                        <p>44€</p>
+                                    </div>
+
                                     <p class="menu_contents_box_recipe_ok">
                                         <i class="fas fa-check-circle fa-inverse"></i>
                                     </p>
-
-                                    <div class="menu_contents_box_recipe_info">
-                                        <p title="Filet de Turbot">Filet de Turbot</p>
-                                        <p title="À la truffe noire sur sa purée de panais">Aux agrumes</p>
-                                    </div>
-
-                                    <p class="menu_contents_box_recipe_price">44€</p>
                                 </div>
                             </a>
                         </div>
@@ -146,49 +165,57 @@
 
                             <a href="">
                                 <div class="menu_contents_box_recipe">
-                                    <p class="menu_contents_box_recipe_ok">
-                                        <i class="fas fa-check-circle fa-inverse"></i>
-                                    </p>
-
                                     <div class="menu_contents_box_recipe_info">
                                         <p title="Paris-Brest">Paris-Brest</p>
                                         <p title="Revisité">Revisité</p>
                                     </div>
 
-                                    <p class="menu_contents_box_recipe_price">18€</p>
+                                    <div class="menu_contents_box_recipe_price">
+                                        <p>18€</p>
+                                    </div>
+
+                                    <p class="menu_contents_box_recipe_ok">
+                                        <i class="fas fa-check-circle fa-inverse"></i>
+                                    </p>
                                 </div>
                             </a>
 
                             <a href="">
                                 <div class="menu_contents_box_recipe">
-                                    <p class="menu_contents_box_recipe_ok">
-                                        <i class="fas fa-check-circle fa-inverse"></i>
-                                    </p>
-
                                     <div class="menu_contents_box_recipe_info">
                                         <p title="Macaron au chocolat d'exception">Macaron au chocolat d'exception</p>
                                         <p title="Et glace à la vanille de Madagascar">Et glace à la vanille de Madagascar</p>
                                     </div>
 
-                                    <p class="menu_contents_box_recipe_price">22€</p>
+                                    <div class="menu_contents_box_recipe_price">
+                                        <p>22€</p>
+                                    </div>
+
+                                    <p class="menu_contents_box_recipe_ok">
+                                        <i class="fas fa-check-circle fa-inverse"></i>
+                                    </p>
                                 </div>
                             </a>
 
                             <a href="">
                                 <div class="menu_contents_box_recipe">
-                                    <p class="menu_contents_box_recipe_ok">
-                                        <i class="fas fa-check-circle fa-inverse"></i>
-                                    </p>
-
                                     <div class="menu_contents_box_recipe_info">
-                                        <p title=" Mousse au chocolat"> Mousse au chocolat</p>
+                                        <p title="Mousse au chocolat">Mousse au chocolat</p>
                                         <p title="Au piment d'Espelette et à la truffe noire">Au piment d'Espelette et à la truffe noire</p>
                                     </div>
 
-                                    <p class="menu_contents_box_recipe_price">23€</p>
+                                    <div class="menu_contents_box_recipe_price">
+                                        <p>23€</p>
+                                    </div>
+
+                                    <p class="menu_contents_box_recipe_ok">
+                                        <i class="fas fa-check-circle fa-inverse"></i>
+                                    </p>
                                 </div>
                             </a>
                         </div>
+
+
 
                         <div class="order">
                             <a href="index.html">
@@ -197,11 +224,7 @@
                         </div>
                     </div>
                 </div>
-
             </article>
-
-            
-            
         </div>
 
         <footer>    
