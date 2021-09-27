@@ -43,8 +43,11 @@ $restaurants_box_new_background_color: #99e2d0;
 $functionning_tasting_color : $primary_color;
 $functionning_tasting_background_color : #f5edff;
 
-/*==================== placeholder ====================*/
+/*-------------------- var : $change_scale_temp -------------------- */
 
+$change_scale_temp: random(3) * 1000;
+
+/*==================== placeholder ====================*/
 
 
 /*==================== mixins ====================*/        
@@ -125,10 +128,7 @@ $functionning_tasting_background_color : #f5edff;
         }
     }
 
-    animation-name: move_opacity;
-    animation-duration: 1500ms;
-    animation-delay: 200ms;
-    animation-fill-mode: both;
+    animation: move_opacity 1500ms 200ms both;
 }
 
 
@@ -146,6 +146,34 @@ $functionning_tasting_background_color : #f5edff;
     }
 }
 
+@keyframes change_scale {
+    from{
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0);
+    }
+}
+
+@keyframes loader_quart_spin {
+    from{
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loader_quart_scale {
+    from{
+        transform: scale(.8);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
 /*  ==================== html - body - box_main - header ====================*/
 
 *, *:before, *:after {
@@ -157,7 +185,7 @@ $functionning_tasting_background_color : #f5edff;
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-    background-color: #fff;  
+    // background-color: #fff;  
 }
 
 body {
@@ -171,30 +199,38 @@ body {
     background-color: $background_color;
 }
 
-.box_main {
+.box_main, .box_main_index {
     width: 100%;
     max-width: 1440px;
     min-width: 375px;
+
+}
+
+.box_main_index {
+    height: 0;
     margin: 0 auto;
+    transform: scale(0);
+    animation: change_scale 0ms $change_scale_temp+ms linear reverse forwards;
 }
 
 header {
     position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
     height: 62px;
     background-color:#fff;
     font-family: Shrikhand,"sans-serif";
     box-shadow: 0 0 2px 1px #cfcfcf;
 
+
     h2 {
         font-size: 2.9rem;
-        padding-top: 15px;
+        padding-top: 8px;
 
         @media all and (min-width: 810px) {
-            font-size: 3.5rem;
-            padding-top: 8px;
+            font-size: 4rem;
         }  
     }
 
@@ -364,6 +400,14 @@ article {
                     font-size:  2rem;
                     color: #7e7e7e;
                 }
+
+                
+            }
+
+            @media all and (min-width: 675px) {
+                a {
+                    margin: 0 10px;
+                }  
             }
         }
     }
@@ -394,9 +438,13 @@ article {
             margin-bottom: 18px;
             @include box_shadow_button();
 
-            &:hover .restaurants_box_img {
-                clip-path: polygon(0 100%, 100% 100%, 50% 0, 0 100%);
-                transition: 300ms 600ms ease-in-out;
+            &:hover {
+                @include box_shadow_button_hover();
+
+                .restaurants_box_img {
+                    clip-path: polygon(0 100%, 100% 100%, 50% 0, 0 100%);
+                    transition: 300ms 600ms ease-in-out;
+                }
             }
 
             &_img {
@@ -510,7 +558,7 @@ aside {
     flex: 0;
     text-align: justify;
     border: 1px solid $primary_color;
-    border-radius: 20px;
+    // border-radius: 20px;
     box-shadow: -2px -2px 5px $primary_color;
     padding: 10px;
     line-height: 24px;
@@ -582,9 +630,13 @@ footer {
                 border-bottom: 2px solid #fff;
                 filter: drop-shadow(0 5px 5px #fff);
             }
-        }        
+        }
+        
     }
 
+    a:nth-of-type(3), a:nth-of-type(4) {
+        font-weight: 300;
+    }
 }
 /*====================  Various tags ====================*/
 
@@ -610,7 +662,6 @@ article {
         background-color: $background_color;
 
         &_img{
-            // position: relative;
             width: 375px;
             height: 250px;
         }
@@ -799,6 +850,65 @@ article {
     }
 }
 
+/*====================  Loader: Two Quarter Circle ====================*/
 
+.loader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    // padding-top: 100px;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a8ea0;
+    color: #fff;
+    z-index: 100;
+    font-size: 2.5rem;
+    animation: change_scale 0ms $change_scale_temp+ms linear forwards;
 
+    &_quart {
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+        border : 6px solid rgba(255, 255, 255, .1);
+        border-left-color: rgb(76, 0, 255);
+        animation: loader_quart_spin 2000ms linear infinite alternate;
+
+        & + p { margin-top: 20px;
+            animation: loader_quart_scale 1000ms linear infinite alternate both;
+            &:hover {
+                color: transparent;
+                &:after {
+                    color: #fff;
+                    margin-left: -50px;
+                    content: "Chargement";
+                }
+            }
+        }
+        
+        &:hover {   
+                position: relative;
+                animation: paused;
+            }
+
+        &:after {
+            position: absolute;
+            content: "";
+            top: -6px;
+            right: -6px;
+            bottom: -6px;
+            left: -6px;
+            border: 6px solid transparent;
+            border-radius: 100px;
+            border-top-color: rgba(255, 255, 255, .6);
+            animation: loader_quart_spin 2000ms linear infinite;
+        }
+    }
+    
+}
