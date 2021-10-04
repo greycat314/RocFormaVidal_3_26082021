@@ -816,6 +816,7 @@ article {
 
                 }
 
+                // 10 is the maximum number of suggestions for starters, main courses, desserts. You can change it
                 @for $i from 1 through 10 {
                         a:nth-of-type(#{$i}) {
                         opacity: 0;
@@ -862,7 +863,6 @@ article {
     display: flex;
     width: 100vw;
     height: 100vh;
-    // padding-top: 100px;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
